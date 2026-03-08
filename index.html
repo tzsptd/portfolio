@@ -590,10 +590,7 @@
         Welcome to my game art portfolio.
       </p>
 
-      <div class="cta-row">
-        <a class="btn primary" href="#projects-card">View Sections</a>
-        <a class="btn" href="#featured">Featured Work</a>
-      </div>
+
     </div>
   </div>
 
@@ -612,7 +609,7 @@
         <div style="display:grid;gap:8px;font-size:0.88rem;color:var(--muted);">
           <div>
             <span style="color:var(--accent);margin-right:8px;">✉</span>
-            <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="197c776e7c7037737077597c61787469757c377a7674">[email&#160;protected]</a></span>
+            <span><a id="email-link" style="color: inherit;"></a></span>
           </div>
           <div>
             <span style="color:var(--accent);margin-right:8px;">📱</span>
@@ -785,7 +782,15 @@ Enwei Jin  //tzsptd
 
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+// assemble email to avoid spam scrapers
+(function() {
+  const el = document.getElementById('email-link');
+  if (!el) return;
+  const addr = 'enwei.jin' + '@' + 'example.com';
+  el.href = 'mailto:' + addr;
+  el.textContent = addr;
+})();
 function flashTarget() {
   const id = window.location.hash.replace('#','');
   if (!id) return;
