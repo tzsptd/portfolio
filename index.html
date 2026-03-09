@@ -560,14 +560,8 @@
       box-sizing: border-box;
     }
 
-    #slider-track .carousel-card {
-      background-image: url('jeffrey-epstein-attends-launch-of-radar-magazine-at-hotel-news-photo-591529968-1562782199.avif');
-      background-size: cover;
-      background-position: top center;
-    }
-    #carousel-animation-card {
+    #carousel-animation-card, #carousel-rigs-card {
       background-image: none;
-      position: relative;
       overflow: hidden;
     }
 
@@ -705,12 +699,11 @@
 
     <div class="panel-body" style="flex:1;position:relative;padding-bottom:72px;">
       <h1>
-        Game <span class="accent">animation</span>,<br>
-        rigs, and tools.
+        Hi, I'm Enwei Jin <span class="accent">"tzsptd"</span>.
       </h1>
 
       <p>
-        Welcome to my game art portfolio.
+        Game animation, rigging, and Maya tools — a portfolio of character work for games.
       </p>
 
       <div style="position:absolute;bottom:22px;right:22px;display:flex;gap:10px;">
@@ -727,7 +720,7 @@
 
     <div class="panel-body" style="display:flex;flex-direction:column;gap:18px;">
       <p style="margin:0;color:var(--muted);line-height:1.8;font-size:0.95rem;">
-        I'm Enwei Jin, aka "tzsptd" — a USC '27 game design student. I care about the craft behind how game characters move and feel, from the rig systems that give them life to the scripts that make the pipeline smoother.
+        I'm Enwei Jin, aka "tzsptd" — a USC '27 game design student. I care about the craft behind how game characters move and feel, from the animations that give them life to the rigs that make them easier to animate.
       </p>
 
       <div id="contact" style="border-top:1px solid var(--line);padding-top:16px;">
@@ -776,8 +769,9 @@
               <div class="tag" style="position:relative;z-index:1;">Animation</div>
             </a>
 
-            <a class="carousel-card" href="#" data-modal-target="rigs-modal">
-              <div class="tag">Rigging</div>
+            <a class="carousel-card" href="#" data-modal-target="rigs-modal" data-highlight-target="item-snatchit" id="carousel-rigs-card">
+              <img id="carousel-rigs-gif" src="snatchit_rig_frame1.jpg" alt="Rigging" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:inherit;">
+              <div class="tag" style="position:relative;z-index:1;">Rigging</div>
             </a>
 
             <a class="carousel-card" href="#" data-modal-target="projects-modal">
@@ -822,9 +816,7 @@
       <div class="panel-title">projects</div>
       <div class="folder-path">/projects</div>
     </div>
-    <div class="folder-thumb" style="padding:0;overflow:hidden;">
-      <img src="jeffrey-epstein-attends-launch-of-radar-magazine-at-hotel-news-photo-591529968-1562782199.avif" alt="thumbnail" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-    </div>
+    <div class="folder-thumb"></div>
   </a>
 
   <a class="panel card folder-card" href="#" data-modal-target="rigs-modal" id="rigs-card">
@@ -832,8 +824,9 @@
       <div class="panel-title">rigs</div>
       <div class="folder-path">/rigs</div>
     </div>
-    <div class="folder-thumb" style="padding:6px;overflow:hidden;background:#0a120e;">
-      <img src="horseguy_frame1.jpg" alt="" style="width:100%;border-radius:4px;object-fit:cover;display:block;">
+    <div class="folder-thumb" style="padding:6px;overflow:hidden;display:flex;gap:4px;background:#0a120e;">
+      <img src="horseguy_frame1.jpg" alt="" style="width:50%;border-radius:4px;object-fit:cover;display:block;">
+      <img src="snatchit_rig_frame1.jpg" alt="" style="width:50%;border-radius:4px;object-fit:cover;display:block;">
     </div>
   </a>
 
@@ -845,8 +838,9 @@
     <div class="folder-thumb" style="padding:6px;overflow:hidden;display:flex;flex-direction:column;gap:4px;background:#0a120e;">
       <img src="FPSanimDemo_frame1.jpg" alt="" style="width:100%;border-radius:4px;object-fit:cover;display:block;">
       <div style="display:flex;gap:4px;">
-        <img src="bug_attack_frame1.jpg" alt="" style="width:50%;border-radius:4px;object-fit:cover;display:block;">
-        <img src="bug_death_frame1.jpg" alt="" style="width:50%;border-radius:4px;object-fit:cover;display:block;">
+        <img src="bug_attack_frame1.jpg" alt="" style="width:33%;border-radius:4px;object-fit:cover;display:block;">
+        <img src="bug_death_frame1.jpg" alt="" style="width:33%;border-radius:4px;object-fit:cover;display:block;">
+        <img src="bug_idle_frame1.jpg" alt="" style="width:33%;border-radius:4px;object-fit:cover;display:block;">
       </div>
     </div>
   </a>
@@ -857,9 +851,7 @@
       <div class="folder-path">/misc</div>
       <p>3D models, Maya scripts, other digital art, experiments, and whatever else doesn't fit the main categories.</p>
     </div>
-    <div class="folder-thumb" style="padding:0;overflow:hidden;">
-      <img src="jeffrey-epstein-attends-launch-of-radar-magazine-at-hotel-news-photo-591529968-1562782199.avif" alt="thumbnail" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-    </div>
+    <div class="folder-thumb"></div>
   </a>
 
 </section>
@@ -920,6 +912,10 @@ Enwei Jin  //tzsptd
         <div style="display:flex;flex-direction:column;gap:8px;">
           <img src="horseguy_pb.gif" alt="horseguy" style="width:100%;border-radius:10px;display:block;">
           <span style="font-size:0.75rem;color:var(--muted);text-align:center;">horseguy_pb</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <img id="item-snatchit" data-gif-src="snatchit_rig.gif" src="" alt="Snatchit Rig" style="width:100%;border-radius:10px;display:block;">
+          <span style="font-size:0.75rem;color:var(--muted);text-align:center;">snatchit_rig</span>
         </div>
       </div>
     </div>
@@ -1212,13 +1208,15 @@ document.addEventListener('keydown', (event) => {
 
   const animGif = document.getElementById('carousel-anim-gif');
   const animCardIndex = cards.indexOf(document.getElementById('carousel-animation-card'));
+  const rigsGif = document.getElementById('carousel-rigs-gif');
+  const rigsCardIndex = cards.indexOf(document.getElementById('carousel-rigs-card'));
 
   function updateAnimGif() {
-    if (!animGif) return;
-    if (current === animCardIndex) {
-      animGif.src = 'FPSanimDemo.gif?' + Date.now();
-    } else {
-      animGif.src = 'FPSanimDemo_frame1.jpg';
+    if (animGif) {
+      animGif.src = current === animCardIndex ? 'FPSanimDemo.gif?' + Date.now() : 'FPSanimDemo_frame1.jpg';
+    }
+    if (rigsGif) {
+      rigsGif.src = current === rigsCardIndex ? 'snatchit_rig.gif?' + Date.now() : 'snatchit_rig_frame1.jpg';
     }
   }
 
