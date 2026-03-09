@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(\"C:\\\\Users\\\\Enwei\\\\Downloads\\\\ffmpeg-Windows \\(1\\)\\\\ffmpeg-2024-09-05-git-3d0d0f68d5-full_build\\\\bin\\\\ffmpeg.exe\" -i \"d:\\\\GitHub\\\\portfolio\\\\FPSanimDemo.mp4\" -vf \"fps=15,scale=640:-1:flags=lanczos\" \"d:\\\\GitHub\\\\portfolio\\\\FPSanimDemo.gif\")"
+    ]
+  }
+}

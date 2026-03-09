@@ -204,15 +204,17 @@
     }
 
     .folder-card:hover {
-      border-color: rgba(105,240,174,0.45);
-      background: linear-gradient(180deg, rgb(18, 27, 23), rgb(12, 19, 16));
-      transform: translateY(-2px);
+      outline: 2px solid rgba(105, 240, 174, 0.6);
+      box-shadow: 0 0 12px rgba(105, 240, 174, 0.15);
     }
 
     .folder-card .panel-body {
       display: flex;
       flex-direction: column;
       gap: 10px;
+    }
+    .folder-card .panel-title {
+      font-size: 1.1rem;
     }
 
     .folder-thumb {
@@ -248,7 +250,7 @@
       border-radius: 999px;
       border: 1px solid var(--line);
       color: var(--accent);
-      background: var(--accent-soft);
+      background: rgba(10, 18, 14, 0.85);
       font-size: 0.76rem;
       text-transform: uppercase;
       width: fit-content;
@@ -260,8 +262,8 @@
     }
 
     .card:hover {
-      border-color: rgba(105,240,174,0.35);
-      transform: translateY(-1px);
+      outline: 2px solid rgba(105, 240, 174, 0.6);
+      box-shadow: 0 0 12px rgba(105, 240, 174, 0.15);
     }
 
     .card h3 { margin: 0 0 10px; font-size: 1.02rem; }
@@ -310,8 +312,8 @@
     }
 
     .carousel-card:hover {
-      border-color: rgba(105,240,174,0.35);
-      transform: translateY(-2px);
+      outline: 2px solid rgba(105, 240, 174, 0.6);
+      box-shadow: 0 0 12px rgba(105, 240, 174, 0.15);
     }
 
     .carousel-card h3 { margin: 0 0 10px; font-size: 1.02rem; }
@@ -406,6 +408,72 @@
       padding: 28px;
     }
 
+    .modal-body img[data-gif-src], .modal-body img[src$=".gif"] {
+      cursor: zoom-in;
+      transition: outline 0.15s ease, box-shadow 0.15s ease;
+      outline: 2px solid transparent;
+    }
+    .modal-body img[data-gif-src]:hover, .modal-body img[src$=".gif"]:hover {
+      outline: 2px solid rgba(105, 240, 174, 0.6);
+      box-shadow: 0 0 12px rgba(105, 240, 174, 0.15);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+    .lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .lightbox-inner {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      transform: scale(0.95);
+      transition: transform 0.25s cubic-bezier(0.34, 1.4, 0.64, 1);
+    }
+    .lightbox.active .lightbox-inner {
+      transform: scale(1);
+    }
+    .lightbox-inner img {
+      width: min(860px, 90vw);
+      height: auto;
+      border-radius: 14px;
+      display: block;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(220, 80, 80, 0.3);
+      border-radius: 10px;
+      background: rgba(16, 23, 20, 0.95);
+      color: rgba(220, 100, 100, 0.8);
+      font: inherit;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox-close:hover {
+      color: #ff6b6b;
+      border-color: rgba(220, 80, 80, 0.6);
+      background: rgba(220, 80, 80, 0.18);
+    }
+
     .modal-empty {
       height: 100%;
       min-height: 200px;
@@ -497,6 +565,11 @@
       background-size: cover;
       background-position: top center;
     }
+    #carousel-animation-card {
+      background-image: none;
+      position: relative;
+      overflow: hidden;
+    }
 
     .carousel-card.is-active {
       opacity: 1;
@@ -504,7 +577,8 @@
     }
 
     .carousel-card.is-active:hover {
-      border-color: rgba(105,240,174,0.35);
+      outline: 2px solid rgba(105, 240, 174, 0.6);
+      box-shadow: 0 0 12px rgba(105, 240, 174, 0.15);
     }
 
     .carousel-card h3 { margin: 0 0 10px; font-size: 1.02rem; }
@@ -664,6 +738,10 @@
             <span><a id="email-link" style="color: inherit;"></a></span>
           </div>
           <div>
+            <span style="color:var(--accent);margin-right:8px;">✉</span>
+            <span><a id="email-link-qq" style="color: inherit;"></a></span>
+          </div>
+          <div>
             <span style="color:var(--accent);margin-right:8px;">📱</span>
             <span style="margin-right:6px;">US</span>
             <span>+1 (213) 555-0198</span>
@@ -693,8 +771,9 @@
         <div class="slider-viewport">
           <div class="slider-track" id="slider-track">
 
-            <a class="carousel-card" href="#" data-modal-target="animation-modal">
-              <div class="tag">Animation</div>
+            <a class="carousel-card" href="#" data-modal-target="animation-modal" data-highlight-target="item-fpsanimdemo" id="carousel-animation-card">
+              <img id="carousel-anim-gif" src="FPSanimDemo_frame1.jpg" alt="Animation" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:inherit;">
+              <div class="tag" style="position:relative;z-index:1;">Animation</div>
             </a>
 
             <a class="carousel-card" href="#" data-modal-target="rigs-modal">
@@ -753,8 +832,8 @@
       <div class="panel-title">rigs</div>
       <div class="folder-path">/rigs</div>
     </div>
-    <div class="folder-thumb" style="padding:0;overflow:hidden;">
-      <img src="jeffrey-epstein-attends-launch-of-radar-magazine-at-hotel-news-photo-591529968-1562782199.avif" alt="thumbnail" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+    <div class="folder-thumb" style="padding:6px;overflow:hidden;background:#0a120e;">
+      <img src="horseguy_frame1.jpg" alt="" style="width:100%;border-radius:4px;object-fit:cover;display:block;">
     </div>
   </a>
 
@@ -763,8 +842,12 @@
       <div class="panel-title">animation</div>
       <div class="folder-path">/animation</div>
     </div>
-    <div class="folder-thumb" style="padding:0;overflow:hidden;">
-      <img src="jeffrey-epstein-attends-launch-of-radar-magazine-at-hotel-news-photo-591529968-1562782199.avif" alt="Animation thumbnail" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+    <div class="folder-thumb" style="padding:6px;overflow:hidden;display:flex;flex-direction:column;gap:4px;background:#0a120e;">
+      <img src="FPSanimDemo_frame1.jpg" alt="" style="width:100%;border-radius:4px;object-fit:cover;display:block;">
+      <div style="display:flex;gap:4px;">
+        <img src="bug_attack_frame1.jpg" alt="" style="width:50%;border-radius:4px;object-fit:cover;display:block;">
+        <img src="bug_death_frame1.jpg" alt="" style="width:50%;border-radius:4px;object-fit:cover;display:block;">
+      </div>
     </div>
   </a>
 
@@ -804,13 +887,19 @@ Enwei Jin  //tzsptd
       <button class="modal-close" type="button" aria-label="Close">×</button>
     </div>
     <div class="modal-body">
-      <div style="position: relative; width: 50%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden;">
-        <iframe
-          src="https://www.youtube.com/embed/WZy68jCaiMI"
-          style="position: absolute; inset: 0; width: 100%; height: 100%; border: none;"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <img id="item-fpsanimdemo" data-gif-src="FPSanimDemo.gif" src="" alt="FPS Anim Demo" style="width:100%;border-radius:10px;display:block;">
+          <span style="font-size:0.75rem;color:var(--muted);text-align:center;">fps_anim_demo</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <img data-gif-src="bug_attack.gif" src="" alt="Bug Attack" style="width:100%;border-radius:10px;display:block;">
+          <span style="font-size:0.75rem;color:var(--muted);text-align:center;">bug_attack</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <img data-gif-src="bug_death.gif" src="" alt="Bug Death" style="width:100%;border-radius:10px;display:block;">
+          <span style="font-size:0.75rem;color:var(--muted);text-align:center;">bug_death</span>
+        </div>
       </div>
     </div>
   </div>
@@ -823,7 +912,12 @@ Enwei Jin  //tzsptd
       <button class="modal-close" type="button" aria-label="Close">×</button>
     </div>
     <div class="modal-body">
-      <div class="modal-empty">Rigs folder opened.<br>Nothing here yet.</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <img src="horseguy_pb.gif" alt="horseguy" style="width:100%;border-radius:10px;display:block;">
+          <span style="font-size:0.75rem;color:var(--muted);text-align:center;">horseguy_pb</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -848,6 +942,13 @@ Enwei Jin  //tzsptd
   const el = document.getElementById('email-link');
   if (!el) return;
   const addr = 'enweijin2005' + '@' + 'gmail.com';
+  el.href = 'mailto:' + addr;
+  el.textContent = addr;
+})();
+(function() {
+  const el = document.getElementById('email-link-qq');
+  if (!el) return;
+  const addr = '3236517683' + '@' + 'qq.com';
   el.href = 'mailto:' + addr;
   el.textContent = addr;
 })();
@@ -979,14 +1080,10 @@ document.querySelectorAll('.nav a').forEach((link) => {
       const absoluteTop = rect.top + window.scrollY;
       window.scrollTo({ top: absoluteTop - window.innerHeight * 0.35, behavior: 'smooth' });
       setTimeout(() => {
-        contactEl.style.transition = 'box-shadow 0.2s ease, background 0.2s ease';
-        contactEl.style.background = 'rgba(105,240,174,0.07)';
-        contactEl.style.boxShadow = '0 0 0 1px rgba(105,240,174,0.5)';
-        contactEl.style.borderRadius = '10px';
-        setTimeout(() => {
-          contactEl.style.background = '';
-          contactEl.style.boxShadow = '';
-        }, 1200);
+        contactEl.classList.remove('flash-highlight');
+        void contactEl.offsetWidth;
+        contactEl.classList.add('flash-highlight');
+        contactEl.addEventListener('animationend', () => contactEl.classList.remove('flash-highlight'), { once: true });
       }, 450);
       return;
     }
@@ -1003,6 +1100,21 @@ document.querySelectorAll('[data-modal-target]').forEach((trigger) => {
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    modal.querySelectorAll('img[data-gif-src]').forEach(img => {
+      img.src = img.dataset.gifSrc + '?' + Date.now();
+    });
+    const highlightId = trigger.dataset.highlightTarget;
+    if (highlightId) {
+      setTimeout(() => {
+        const el = document.getElementById(highlightId);
+        if (!el) return;
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.classList.remove('flash-highlight');
+        void el.offsetWidth;
+        el.classList.add('flash-highlight');
+        el.addEventListener('animationend', () => el.classList.remove('flash-highlight'), { once: true });
+      }, 300);
+    }
   });
 });
 
@@ -1010,6 +1122,9 @@ function closeModal(modal) {
   modal.classList.remove('active');
   modal.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
+  modal.querySelectorAll('img[data-gif-src]').forEach(img => {
+    img.src = '';
+  });
 }
 
 document.querySelectorAll('.modal-overlay').forEach((modal) => {
@@ -1091,10 +1206,23 @@ document.addEventListener('keydown', (event) => {
     nextBtn.style.opacity = current === N - 1 ? '0.3' : '1';
   }
 
+  const animGif = document.getElementById('carousel-anim-gif');
+  const animCardIndex = cards.indexOf(document.getElementById('carousel-animation-card'));
+
+  function updateAnimGif() {
+    if (!animGif) return;
+    if (current === animCardIndex) {
+      animGif.src = 'FPSanimDemo.gif?' + Date.now();
+    } else {
+      animGif.src = 'FPSanimDemo_frame1.jpg';
+    }
+  }
+
   function goTo(i) {
     current = Math.max(0, Math.min(N - 1, i));
     refreshDots();
     placeAll(true);
+    updateAnimGif();
     resetTimer();
   }
 
@@ -1113,7 +1241,42 @@ document.addEventListener('keydown', (event) => {
   setHeight();
   placeAll(false);
   refreshDots();
+  updateAnimGif();
   resetTimer();
+})();
+
+// ── Lightbox ──
+(function () {
+  const lightbox = document.createElement('div');
+  lightbox.className = 'lightbox';
+  lightbox.innerHTML = '<div class="lightbox-inner"><img id="lightbox-img" src="" alt=""><button class="lightbox-close" aria-label="Close">×</button></div>';
+  document.body.appendChild(lightbox);
+
+  const lbImg = document.getElementById('lightbox-img');
+
+  function openLightbox(src) {
+    lbImg.src = src;
+    lightbox.classList.add('active');
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    lbImg.src = '';
+  }
+
+  lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+  document.querySelectorAll('.modal-body').forEach(body => {
+    body.addEventListener('click', (e) => {
+      const img = e.target.closest('img');
+      if (!img) return;
+      const src = img.src || img.dataset.gifSrc;
+      if (!src || src === window.location.href) return;
+      openLightbox(src);
+    });
+  });
 })();
 </script>
 
