@@ -324,7 +324,6 @@
       position: fixed;
       inset: 0;
       background: rgba(5, 8, 7, 0.82);
-      backdrop-filter: blur(8px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1300,8 +1299,10 @@ document.addEventListener('keydown', (event) => {
   const lbDesc  = document.getElementById('lightbox-desc');
   const lbTitle = document.getElementById('lightbox-title');
 
+  let lastLbSrc = '';
   function openLightbox(gifSrc, description, title) {
-    lbImg.src = gifSrc + '?' + Date.now();
+    lbImg.src = gifSrc === lastLbSrc ? gifSrc + '?' + Date.now() : gifSrc;
+    lastLbSrc = gifSrc;
     lbDesc.innerHTML = description || '';
     lbTitle.textContent = title || '';
     lightbox.classList.add('active');
