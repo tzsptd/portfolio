@@ -1277,13 +1277,13 @@ document.addEventListener('keydown', (event) => {
 
   function updateAnimGif() {
     if (animGif) {
-      animGif.src = current === animCardIndex ? 'FPSanimDemo.gif?' + Date.now() : 'FPSanimDemo_frame1.jpg';
+      animGif.src = current === animCardIndex ? 'FPSanimDemo.gif' : 'FPSanimDemo_frame1.jpg';
     }
     if (rigsGif) {
-      rigsGif.src = current === rigsCardIndex ? 'snatchit_rig.gif?' + Date.now() : 'snatchit_rig_frame1.jpg';
+      rigsGif.src = current === rigsCardIndex ? 'snatchit_rig.gif' : 'snatchit_rig_frame1.jpg';
     }
     if (mechaGif) {
-      mechaGif.src = current === mechaCardIndex ? 'mecha_gameclips.gif?' + Date.now() : 'mecha_gameclips_frame1.jpg';
+      mechaGif.src = current === mechaCardIndex ? 'mecha_gameclips.gif' : 'mecha_gameclips_frame1.jpg';
     }
   }
 
