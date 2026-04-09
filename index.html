@@ -766,8 +766,7 @@
       </p>
 
       <div style="position:absolute;bottom:22px;right:22px;display:flex;gap:10px;">
-        <button id="cool-btn" class="hero-btn" type="button">cool button</button>
-        <button id="view-work-btn" class="hero-btn hero-btn-primary" type="button">view work →</button>
+<button id="view-work-btn" class="hero-btn hero-btn-primary" type="button">view work →</button>
       </div>
     </div>
   </div>
@@ -902,6 +901,7 @@
       <img src="horseguy_frame1.jpg" alt="" style="border-radius:4px;object-fit:cover;display:block;">
       <img src="snatchit_rig_frame1.jpg" alt="" style="border-radius:4px;object-fit:cover;display:block;">
       <img src="tuft_rig_frame1.jpg" alt="" style="border-radius:4px;object-fit:cover;display:block;">
+      <img src="rat_rig_frame1.jpg" alt="" style="border-radius:4px;object-fit:cover;display:block;">
     </div>
   </a>
 
@@ -979,11 +979,11 @@ Enwei Jin  //tzsptd
           <span style="font-size:0.75rem;color:var(--muted);text-align:center;">bug_idle</span>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px;">
-          <img data-gif-src="michiru_walk.gif" data-thumb-src="michiru_walk_frame1.jpg" src="michiru_walk_frame1.jpg" alt="Michiru Walk" data-description="2025<br>Animation by me<br>Made in Autodesk Maya" style="width:100%;border-radius:10px;display:block;">
+          <img data-gif-src="michiru_walk.gif" data-thumb-src="michiru_walk_frame1.jpg" src="michiru_walk_frame1.jpg" alt="Michiru Walk" data-description="2026<br>Animation by me<br>Made in Autodesk 3ds Max" style="width:100%;border-radius:10px;display:block;">
           <span style="font-size:0.75rem;color:var(--muted);text-align:center;">michiru_walk</span>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px;">
-          <img data-gif-src="michiru_idle.gif" data-thumb-src="michiru_idle_frame1.jpg" src="michiru_idle_frame1.jpg" alt="Michiru Idle" data-description="2025<br>Animation by me<br>Made in Autodesk Maya" style="width:100%;border-radius:10px;display:block;">
+          <img data-gif-src="michiru_idle.gif" data-thumb-src="michiru_idle_frame1.jpg" src="michiru_idle_frame1.jpg" alt="Michiru Idle" data-description="2026<br>Animation by me<br>Made in Autodesk 3ds Max" style="width:100%;border-radius:10px;display:block;">
           <span style="font-size:0.75rem;color:var(--muted);text-align:center;">michiru_idle</span>
         </div>
       </div>
@@ -1010,6 +1010,10 @@ Enwei Jin  //tzsptd
         <div style="display:flex;flex-direction:column;gap:8px;">
           <img data-gif-src="horseguy_pb.gif" data-thumb-src="horseguy_frame1.jpg" src="horseguy_frame1.jpg" alt="horseguy" data-description="2024<br>Rig by me<br>Made in Autodesk Maya" style="width:100%;border-radius:10px;display:block;">
           <span style="font-size:0.75rem;color:var(--muted);text-align:center;">horseguy_pb</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <img data-gif-src="rat_rig.gif" data-thumb-src="rat_rig_frame1.jpg" src="rat_rig_frame1.jpg" alt="Rat Rig" data-description="2026<br>Rig by me<br>Made in Autodesk Maya<br><br>Made for USC AGP project &quot;Stitchings&quot;. Model and textures provided by the team." style="width:100%;border-radius:10px;display:block;">
+          <span style="font-size:0.75rem;color:var(--muted);text-align:center;">rat_rig</span>
         </div>
       </div>
     </div>
@@ -1055,73 +1059,6 @@ Enwei Jin  //tzsptd
   el.href = 'mailto:' + addr;
   el.textContent = addr;
 })();
-document.getElementById('cool-btn').addEventListener('click', () => {
-  const pool = ['🎮','🎬','✨','🎯','🔥','⚡','🌟','🎨','🏆','💫','🎲','🕹️'];
-  const count = 6 + Math.floor(Math.random() * 4);
-
-  // Only target folder-cards that are actually in the viewport (or just below)
-  const cardRects = Array.from(document.querySelectorAll('.folder-card'))
-    .map(c => c.getBoundingClientRect())
-    .filter(r => r.height > 0 && r.top > 0 && r.top < window.innerHeight + 300);
-
-  for (let i = 0; i < count; i++) {
-    const emoji = pool[Math.floor(Math.random() * pool.length)];
-    const el = document.createElement('div');
-    el.textContent = emoji;
-    const px = window.innerWidth * (0.05 + Math.random() * 0.9);
-    const sizePx = 28 + Math.random() * 22;
-    el.style.cssText = `position:fixed;left:${px}px;top:0;font-size:${sizePx}px;line-height:1;pointer-events:none;z-index:9999;`;
-    document.body.appendChild(el);
-
-    const rotDir  = Math.random() < 0.5 ? 1 : -1;
-    const gravity = 0.38 + Math.random() * 0.18;
-
-    let y       = -sizePx;
-    let vy      = 0.8 + Math.random() * 1.2;
-    let rot     = 0;
-    let bounced = false;
-    let prevY   = y;
-    const fadeStart = window.innerHeight * 0.72;
-    const fadeEnd   = window.innerHeight + sizePx;
-
-    function frame() {
-      prevY = y;
-      vy += gravity;
-      y  += vy;
-      rot += rotDir * Math.min(vy * 0.9, 4);
-
-      // Per-border chance: roll the dice at the moment of crossing, not before
-      if (!bounced) {
-        const bottom  = y + sizePx;
-        const prevBot = prevY + sizePx;
-        for (const r of cardRects) {
-          if (px + sizePx < r.left || px > r.right) continue;
-          if (prevBot <= r.top && bottom >= r.top) {
-            if (Math.random() < 0.5) {          // 50% chance to bounce at this border
-              y       = r.top - sizePx;
-              vy      = -vy * 0.42;
-              bounced = true;
-            }
-            // Whether bounced or not, don't recheck this same border
-            break;
-          }
-        }
-      }
-
-      const opacity = y >= fadeStart
-        ? Math.max(0, 1 - (y - fadeStart) / (fadeEnd - fadeStart))
-        : 1;
-
-      el.style.transform = `translateY(${y}px) rotate(${rot}deg)`;
-      el.style.opacity   = String(opacity);
-
-      if (y < fadeEnd && opacity > 0) requestAnimationFrame(frame);
-      else el.remove();
-    }
-
-    setTimeout(() => requestAnimationFrame(frame), i * 55);
-  }
-});
 
 document.getElementById('view-work-btn').addEventListener('click', () => {
   const foldersEl = document.getElementById('folders');

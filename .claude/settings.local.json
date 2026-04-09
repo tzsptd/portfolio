@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(\"C:\\\\Users\\\\Enwei\\\\Downloads\\\\ffmpeg-Windows \\(1\\)\\\\ffmpeg-2024-09-05-git-3d0d0f68d5-full_build\\\\bin\\\\ffmpeg.exe\" -i \"d:\\\\GitHub\\\\portfolio\\\\FPSanimDemo.mp4\" -vf \"fps=15,scale=640:-1:flags=lanczos\" \"d:\\\\GitHub\\\\portfolio\\\\FPSanimDemo.gif\")"
+      "Bash(\"C:\\\\Users\\\\Enwei\\\\Downloads\\\\ffmpeg-Windows \\(1\\)\\\\ffmpeg-2024-09-05-git-3d0d0f68d5-full_build\\\\bin\\\\ffmpeg.exe\" -i \"d:\\\\GitHub\\\\portfolio\\\\FPSanimDemo.mp4\" -vf \"fps=15,scale=640:-1:flags=lanczos\" \"d:\\\\GitHub\\\\portfolio\\\\FPSanimDemo.gif\")",
+      "Bash(powershell.exe -Command \"& 'C:\\\\Users\\\\Enwei\\\\Downloads\\\\ffmpeg-Windows \\(1\\)\\\\ffmpeg-2024-09-05-git-3d0d0f68d5-full_build\\\\bin\\\\ffmpeg.exe' -i 'C:\\\\Users\\\\Enwei\\\\Desktop\\\\portfoliostuff\\\\rat_rig.mp4' -vf 'fps=12,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen=stats_mode=diff[p];[s1][p]paletteuse=dither=bayer:bayer_scale=5' -y 'D:\\\\GitHub\\\\portfolio\\\\rat_rig.gif' 2>&1\")",
+      "Bash(powershell.exe -Command \"& 'C:\\\\Users\\\\Enwei\\\\Downloads\\\\ffmpeg-Windows \\(1\\)\\\\ffmpeg-2024-09-05-git-3d0d0f68d5-full_build\\\\bin\\\\ffmpeg.exe' -i 'C:\\\\Users\\\\Enwei\\\\Desktop\\\\portfoliostuff\\\\rat_rig.mp4' -vf 'select=eq\\(n\\\\,0\\),scale=480:-1:flags=lanczos' -frames:v 1 -update 1 -y 'D:\\\\GitHub\\\\portfolio\\\\rat_rig_frame1.jpg' 2>&1\")"
     ]
   }
 }
